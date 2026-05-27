@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Management System</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+ 
+  <!-- HEADER -->
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <span class="logo-icon">🎓</span>
+        <span class="logo-text">Student Management System</span>
+      </div>
+      <div id="api-status" class="status-badge">● Connecting...</div>
+    </div>
+  </header>
+ 
+  <!-- MAIN -->
+  <div class="container">
+ 
+    <!-- LEFT: FORM -->
+    <div class="form-box">
+      <h2 id="form-title">➕ Add Student</h2>
+ 
+      <!-- Hidden ID for edit -->
+      <input type="hidden" id="edit-id" />
+ 
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" id="inp-name" placeholder="Enter full name" />
+        <span class="err" id="err-name"></span>
+      </div>
+ 
+      <div class="form-group">
+        <label>Course *</label>
+        <input type="text" id="inp-course" placeholder="Enter course name" />
+        <span class="err" id="err-course"></span>
+      </div>
+ 
+      <div class="form-group">
+        <label>Age *</label>
+        <input type="number" id="inp-age" placeholder="Enter age" min="1" max="100" />
+        <span class="err" id="err-age"></span>
+      </div>
+ 
+      <div class="form-group">
+        <label>Joining Date *</label>
+        <input type="date" id="inp-date" />
+        <span class="err" id="err-date"></span>
+      </div>
+ 
+      <div class="btn-group">
+        <button class="btn-add" id="submit-btn" onclick="submitForm()">➕ Add Student</button>
+        <button class="btn-cancel" id="cancel-btn" onclick="cancelEdit()" style="display:none;">✖ Cancel</button>
+      </div>
+ 
+      <!-- Toast message -->
+      <div id="toast" class="toast"></div>
+ 
+      <!-- Stats -->
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num" id="total">0</div>
+          <div class="stat-label">Total</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" id="courses">0</div>
+          <div class="stat-label">Courses</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" id="avg-age">-</div>
+          <div class="stat-label">Avg Age</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- RIGHT: TABLE -->
+    <div class="table-box">
+      <div class="table-header">
+        <h2>📋 All Students</h2>
+        <div class="table-controls">
+          <input type="text" id="search" placeholder="🔍 Search..." oninput="search()" />
+          <button class="btn-refresh" onclick="loadStudents()">↻ Refresh</button>
+        </div>
+      </div>
+ 
+      <!-- Spinner -->
+      <div id="spinner" class="spinner-wrap">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+      </div>
+ 
+      <!-- Table -->
+      <div id="table-wrap" style="display:none;">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Course</th>
+              <th>Age</th>
+              <th>Joining Date</th>
+              <th>Added On</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+ 
+      <!-- Empty -->
+      <div id="empty" style="display:none;" class="empty">
+        <div>🎓</div>
+        <p>No students found.</p>
+        <small>Add a student using the form.</small>
+      </div>
+    </div>
+ 
+  </div>
+ 
+  <!-- FOOTER -->
+  <footer>Student Management System &nbsp;·&nbsp; Flask + SQLAlchemy + SQLite</footer>
+ 
+  <script src="script.js"></script>
+</body>
+</html>
